@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@theme {
+  --color-studio-base: #070B12;
+  --color-studio-surface: #0D131F;
+  --color-studio-card: #111A29;
+  --color-studio-border: rgba(255, 255, 255, 0.1);
+  --color-electric-blue: #0066FF;
+  --color-cyan-glow: #00E5FF;
+  --color-gold: #C4A574;
+  --color-gold-light: #E4D1A8;
+  --color-gold-dark: #9E7D47;
+  --color-slate-muted: #8E9CAE;
+
+  --font-royal: "Cinzel", Georgia, serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #070B12;
+    color: #F1F5F9;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-color: #070B12;
+    color: #F1F5F9;
+  }
+
+  /* Custom subtle dark studio scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #070B12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+    border: 1px solid rgba(196, 165, 116, 0.3);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+}
+
+/* Classic Royal Typography */
+.font-royal {
+  font-family: var(--font-royal);
+  letter-spacing: 0.03em;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+/* Royal & Cyan Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FAFBFD 20%, #C4A574 60%, #E4D1A8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.electric-gradient-text {
+  background: linear-gradient(135deg, #38BDF8 0%, #0066FF 60%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Luxury Dark Studio Cards & Borders */
+.studio-glass-card {
+  background: rgba(13, 19, 31, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.studio-glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 10px 35px rgba(0, 102, 255, 0.15);
+}
+
+.studio-pill {
+  background: rgba(17, 26, 41, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Detailing Soap Foam Bubble Animations */
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(0.65) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-300px) scale(1.15) translateX(var(--drift, 18px));
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleWobble {
+  0%, 100% {
+    border-radius: 50% 48% 52% 49%;
+  }
+  50% {
+    border-radius: 48% 53% 47% 52%;
+  }
+}
+
+@keyframes tapSprayPulse {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.soap-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95) 0%, rgba(0, 229, 255, 0.45) 35%, rgba(196, 165, 116, 0.25) 60%, rgba(168, 85, 247, 0.2) 80%, rgba(255, 255, 255, 0.7) 100%);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.8), 0 0 12px rgba(0, 229, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+  animation: floatBubble 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite, bubbleWobble 2.5s ease-in-out infinite alternate;
+}
+
+.interactive-tap-burst {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(0, 229, 255, 0.75) 30%, rgba(0, 102, 255, 0.35) 65%, transparent 100%);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+  animation: tapSprayPulse 0.65s ease-out forwards;
+}
+
+@keyframes armorScan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+.armor-scan-line {
+  animation: armorScan 2.6s ease-in-out infinite;
+}
+
+/* Detailing Foam & Water Wash Animations */
+@keyframes washSweepAnim {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  60% {
+    transform: translateX(120%) skewX(-20deg);
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateX(220%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes washMistAnim {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.97) translateY(0);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.03) translateY(-4px);
+  }
+}
+
+@keyframes clothBuffAnim {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.85;
+  }
+}
+
+@keyframes overheadLightAnim {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.wash-sweep-anim {
+  animation: washSweepAnim 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wash-mist-anim {
+  animation: washMistAnim 3.5s infinite ease-in-out;
+}
+
+.cloth-buff-anim {
+  animation: clothBuffAnim 2.2s infinite ease-in-out;
+}
+
+.overhead-light-anim {
+  animation: overheadLightAnim 4s infinite ease-in-out;
+}
+
+.slider-handle-shadow {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.95), 0 0 20px rgba(0, 229, 255, 0.5), 0 8px 24px rgba(0, 0, 0, 0.7);
+}
